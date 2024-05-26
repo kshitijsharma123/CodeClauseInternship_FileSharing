@@ -29,6 +29,7 @@ export const fileUpload = async (req, res) => {
       return res.status(500).json({ error: "Error while saving the file" });
     return res.status(200).json({
       file: `${baseULR}api/files/${file.uuid}`,
+      uuid: file.uuid,
     });
   } catch (error) {
     console.error("File upload error:", error);
@@ -60,7 +61,7 @@ export const viewFile = async (req, res) => {
         file.password
       );
       if (!isPasswordValid) {
-        return res.status(401).json({ error: "Incorrect password" });
+        return res.status(402).json({ error: "Incorrect password" });
       }
       return res.status(200).json({
         // isPassword: true,
